@@ -1,0 +1,115 @@
+body{
+    background-color: #000;
+}
+
+section{
+    width:100%;
+    margin:0 auto;
+}
+
+/*Para que el contenedor muestre elementos aunque estos sean flotantes*/
+#container:after {
+    content: " ";
+    display: block;
+    height: 0;
+    clear: both;
+}
+
+#container{
+    width: 90%;
+    margin:40px auto;
+}
+
+/*Estructura de cada componente de la galeria (imagen + descripcion)*/
+#container div{
+    position: relative;
+    width: 28%;
+    height: auto;
+    -webkit-transform:rotate(-8deg);
+    display:inline;
+    float:left;
+    margin:5px 3% 5px 0;
+    z-index:1;
+    transition: width 1s, width 1s, top 1s;
+    -webkit-transition: -webkit-transform 1s, width 1s, top 1s;
+}
+
+/*Se rota ligeramente al posicionarnos encima del componente de la galeria (imagen + descripcion)*/
+
+
+#container div:hover{
+    -webkit-animation: rotate-img 1s;
+    -o-animation: rotate-img 1s;
+    -moz-animation: rotate-img 1s;
+    -ms-animation: rotate-img 1s;
+    animation: rotate-img 1s;
+    -webkit-transform:rotate(0deg);
+}
+
+#container div.select{
+    -webkit-transform:rotate(0deg);
+    position: fixed;	
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left:0;
+    z-index:5;
+    background:rgba(0,0,0,0.5);
+    margin:0;
+}
+
+#container div.select img{
+    width: 56%;
+    height: auto;
+    box-shadow: 0 0 20px #DDD;
+    border: 5px solid #FFF;
+    position: fixed;	
+    top: 20%;
+    left:20%;
+}
+
+#container div.select + div{
+    margin: 5px 3% 5px 31%;
+}
+
+#container div img{
+    width: 100%;
+    height: auto;
+    box-shadow: 0 0 10px #666;
+    border: 5px solid #FFF
+}
+
+/*Estructura de la descripcion, por defecto no se muestra*/
+#container div img ~ span{
+    width: auto;
+    opacity:0;
+    -webkit-transition: opacity 1s;
+    margin:0;
+    padding:5px 10px;
+    border-radius: 2px;
+    color:#000;
+    background:rgb(255, 255, 255);
+    text-align:center;
+    position: fixed;	
+    top: 20%;
+    left:20%;
+}
+
+/*Se muestra la descripcion al posicionar el cursor encima de la imagen*/
+#container div.select img + span{
+    opacity:1;
+}
+
+/*Media query de ejemplo para pantallas de alta resolucion
+  pero pueden haber mas, este media query permite mostrar hasta 5 imagenes por filas
+*/
+@media (min-width:1600px){
+    #container div{
+        width: 15%;
+    }
+
+    #container div.select + div{
+        margin: 5px 3% 5px 15%;
+    }
+
+}

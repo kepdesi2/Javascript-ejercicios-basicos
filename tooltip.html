@@ -1,0 +1,40 @@
+<html>    
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    </head>
+    <title>Tooltips personalizados</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="tooltip.css" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>	
+    
+</head>
+<body>
+    <center>
+    <h2>Tooltips con JQuery</h2>
+    <a href="#" title="Este enlace actualmente no lleva a ningún lado pero sirve para mostrarte el uso del tooltip" class="tooltip_elemento center">Tooltip en un enlace</a>
+
+    </center>
+
+    
+    <script type="text/javascript">
+        jQuery("a").mouseenter(function (e) {             
+            var posMouse = e.pageX - this.offsetLeft; 
+            var textoTooltip = jQuery(this).attr("title"); 
+			
+            if (textoTooltip.length >= 0) {
+                jQuery(this).append('<div class="tooltip">' + textoTooltip + '</div>');
+                jQuery("a > div.tooltip").css("left", "" + posMouse - 103 + "px");
+                jQuery("a > div.tooltip").fadeIn(300);
+            }
+        });
+
+        jQuery("a").mouseleave(function () {             
+            jQuery("a > div.tooltip").fadeOut(300).delay(300).queue(function () {
+                jQuery(this).remove();
+                jQuery(this).dequeue();
+            });
+        });
+    </script>
+  
+
+
+</body></html>
